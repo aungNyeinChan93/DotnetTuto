@@ -1,0 +1,6 @@
+<Solution>
+  <Folder Name="/projects/">
+    <Project Path="DotnetTuto.consoleApp1/DotnetTuto.consoleApp1.csproj" />
+    <Project Path="DotnetTuto.webApi1/DotnetTuto.webApi1.csproj" />
+  </Folder>
+</Solution>

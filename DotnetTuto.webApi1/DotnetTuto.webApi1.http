@@ -1,0 +1,6 @@
+@DotnetTuto.webApi1_HostAddress = http://localhost:5160
+
+GET {{DotnetTuto.webApi1_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
