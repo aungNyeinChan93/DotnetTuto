@@ -1,6 +1,8 @@
 <Solution>
   <Folder Name="/projects/">
     <Project Path="DotnetTuto.consoleApp1/DotnetTuto.consoleApp1.csproj" />
+    <Project Path="DotnetTuto.Database/DotnetTuto.Database.csproj" Id="613bc889-667c-4dfa-a6b1-5521a72316df" />
+    <Project Path="DotnetTuto.Domain/DotnetTuto.Domain.csproj" Id="bd234e2e-14dd-4a97-92a5-362e86ce1a80" />
     <Project Path="DotnetTuto.webApi1/DotnetTuto.webApi1.csproj" />
   </Folder>
 </Solution>
