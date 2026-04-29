@@ -25,10 +25,13 @@ namespace DotnetTuto.Database.Repositry
             var model = new UserListsResponseModel()
             {
                 users = users,
-                IsSuccess = true,
-                ResponseCode = 200,
-                ResponseMessage = "OK Get All Users",
-                ResponseType = EnumResponseType.Success
+                Response = new ResponseModel
+                {
+                   ResponseCode = 200,
+                   IsSuccess = true,
+                   ResponseMessage = "Get All users",
+                   ResponseType = EnumResponseType.Success,
+                }
             };
 
             return model;

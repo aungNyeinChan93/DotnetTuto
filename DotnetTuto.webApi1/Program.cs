@@ -1,6 +1,7 @@
 using DotnetTuto.consoleApp1.Services;
 using DotnetTuto.Database;
 using DotnetTuto.Domain.Extension;
+using DotnetTuto.webApi1.Helpers;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddDomain();
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<EffortlessService>();
-
+builder.Services.AddScoped<ResponseHelper>();
 
 
 var app = builder.Build();

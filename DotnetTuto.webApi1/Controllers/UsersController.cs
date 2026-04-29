@@ -1,4 +1,6 @@
-﻿using DotnetTuto.Domain.Services;
+﻿using DotnetTuto.Domain.Models;
+using DotnetTuto.Domain.Services;
+using DotnetTuto.webApi1.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,9 +13,12 @@ namespace DotnetTuto.webApi1.Controllers
 
         private readonly UserService _userService;
 
-        public UsersController(UserService userService)
+        private readonly ResponseHelper _resHelper;
+
+        public UsersController(UserService userService, ResponseHelper resHelper)
         {
             _userService = userService;
+            _resHelper = resHelper;
         }
 
         [HttpGet]
@@ -22,11 +27,12 @@ namespace DotnetTuto.webApi1.Controllers
             try
             {
                 var model = await _userService.GetAllUsersAsync();
-                if (model is null)
-                {
-                    return NotFound();
-                }
-                return Ok(model);
+
+                //var result =  await new ResponseHelper().Execute(model!);
+                var result = await _resHelper.Execute(model!);
+
+                return result;
+               
             }
             catch (Exception err)
             {
