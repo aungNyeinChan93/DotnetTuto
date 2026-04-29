@@ -2,6 +2,7 @@ using DotnetTuto.consoleApp1.Services;
 using DotnetTuto.Database;
 using DotnetTuto.Domain.Extension;
 using DotnetTuto.webApi1.ActionFilters.Users;
+using DotnetTuto.webApi1.Extensions;
 using DotnetTuto.webApi1.Helpers;
 using Scalar.AspNetCore;
 
@@ -31,5 +32,16 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// middleware 
+app.MapMiddlewares();
+app.Use(async(context,next) =>
+{
+    var authHeader = context.Request.Headers["Authorization"].ToString();
+    Console.WriteLine($"Hit test middleware! {authHeader}");
+    await next.Invoke(context);
+});
+
+
 
 app.Run();
