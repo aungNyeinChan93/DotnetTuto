@@ -42,5 +42,27 @@ namespace DotnetTuto.webApi1.Helpers
 
             return BadRequest(model);
         }
+
+        public async Task<IActionResult> Execute<T>(ResultModel<T> model)
+        {
+            if (model is null)
+            {
+                return NotFound();
+            }
+
+            if (model.ResponseType == EnumResponseType.ValidationError)
+            {
+                return BadRequest();
+            }
+            if (model.ResponseType == EnumResponseType.SystemEror)
+            {
+                return StatusCode(500,model.ResponseMessage);
+            }
+            if (model.ResponseType == EnumResponseType.Success)
+            {
+                return Ok(model);
+            }
+            return BadRequest(model.ResponseMessage);
+        }
     }
 }

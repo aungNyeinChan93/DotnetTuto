@@ -1,8 +1,7 @@
-﻿using DotnetTuto.Domain.Models;
-using DotnetTuto.Domain.Services;
+﻿using DotnetTuto.Domain.Services;
 using DotnetTuto.webApi1.Helpers;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DotnetTuto.Domain.Models;
 
 namespace DotnetTuto.webApi1.Controllers
 {
@@ -28,11 +27,25 @@ namespace DotnetTuto.webApi1.Controllers
             {
                 var model = await _userService.GetAllUsersAsync();
 
-                //var result =  await new ResponseHelper().Execute(model!);
                 var result = await _resHelper.Execute(model!);
 
                 return result;
-               
+            }
+            catch (Exception err)
+            {
+                return StatusCode(500, err.Message);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetOne(int id)
+        {
+            try
+            {
+                var model = await _userService.GetOneAsync(id);
+                if (model == null) return BadRequest();
+                var responseModel = await _resHelper.Execute<User>(model);
+                return Ok(model);
             }
             catch (Exception err)
             {

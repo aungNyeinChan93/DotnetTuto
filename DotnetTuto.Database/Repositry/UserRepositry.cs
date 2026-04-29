@@ -36,5 +36,11 @@ namespace DotnetTuto.Database.Repositry
 
             return model;
         }
+
+        public async Task<User?> GetOneUser(int id)
+        {
+            var user =await _context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.UserId == id);
+            return user;
+        }
     }
 }

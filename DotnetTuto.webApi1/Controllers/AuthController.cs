@@ -119,14 +119,14 @@ namespace DotnetTuto.webApi1.Controllers
 
     public static class UsersModel
     {
-        public static List<User>? users { get; set; } = new List<User>()
+        public static List<User2>? users { get; set; } = new List<User2>()
         {
-            new User{Name = "user",Password = "123123"},
-            new User{Name = "admin",Password = "123123"}
+            new User2{Name = "user",Password = "123123"},
+            new User2{Name = "admin",Password = "123123"}
         };
     }
 
-    public class User
+    public class User2
     {
         public string? Name { get; set; }
         public string?  Password { get; set; }
