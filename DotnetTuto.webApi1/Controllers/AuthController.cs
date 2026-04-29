@@ -1,4 +1,5 @@
 ﻿using DotnetTuto.consoleApp1.Services;
+using DotnetTuto.webApi1.ActionFilters.Users;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -82,36 +83,41 @@ namespace DotnetTuto.webApi1.Controllers
             }
         }
 
+
+        [ServiceFilter(typeof(UserListActionFilter))]
         [HttpGet("users")]
-        public async Task<IActionResult> Users([FromQuery] string token)
+        public async Task<IActionResult> Users()
         {
-            if (token is null)
-            {
-                return NotFound("Token Not Found");
-            }
 
-            var result = _effortlessService.Decode(token);
+            //HttpContext.Request.Headers.TryGetValue("Authorization", out var token2);
+            //if (token is null)
+            //{
+            //    return NotFound("Token Not Found");
+            //}
 
-            if (result is null)
-            {
-                return Unauthorized();
-            }
+            //var result = _effortlessService.Decode(token);
 
-            var userLoginModel = JsonConvert.DeserializeObject<UserLoginModel>(result!);
+            //if (result is null)
+            //{
+            //    return Unauthorized();
+            //}
 
-            if (userLoginModel is  null)
-            {
-                return Unauthorized();
-            }
+            //var userLoginModel = JsonConvert.DeserializeObject<UserLoginModel>(result!);
 
-            if (userLoginModel.SessionExp < DateTime.Now)
-            {
-                return Unauthorized("session expired!");
-            }
+            //if (userLoginModel is  null)
+            //{
+            //    return Unauthorized();
+            //}
+
+            //if (userLoginModel.SessionExp < DateTime.Now)
+            //{
+            //    return Unauthorized("session expired!");
+            //}
 
             var users = UsersModel.users;
 
-            return Ok(new { success = true, result = userLoginModel  ,users });
+            //return Ok(new { success = true, result = userLoginModel  ,users });
+            return Ok(new { success = true ,users });
         }
 
 

@@ -1,6 +1,7 @@
 using DotnetTuto.consoleApp1.Services;
 using DotnetTuto.Database;
 using DotnetTuto.Domain.Extension;
+using DotnetTuto.webApi1.ActionFilters.Users;
 using DotnetTuto.webApi1.Helpers;
 using Scalar.AspNetCore;
 
@@ -13,6 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<EffortlessService>();
 builder.Services.AddScoped<ResponseHelper>();
+builder.Services.AddScoped<UserListActionFilter>();
 
 
 var app = builder.Build();
